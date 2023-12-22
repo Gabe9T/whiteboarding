@@ -1,0 +1,123 @@
+
+PROMPT 1
+const string = "jasmine Ann Jones"
+
+function replaces(str) {
+    let strArray = str.split("");
+    for (let i = 0; i < strArray.length; i++) {
+        if (strArray[i] === " ") {
+            strArray[i] = "%20";
+        }
+    }
+    return strArray.join("");
+}
+
+function replaceSpacesRecursively(str) {
+    if (str.length === 0) {
+        return "";
+    }
+    let firstChar = str[0] === " " ? "%20" : str[0];
+    return firstChar + replaceSpacesRecursively(str.slice(1));
+}
+
+PROMPT 2
+
+const array = [7, 9, "hi", 12, "hi", 7, 53];
+//Remove With For loop
+  function removeDuplicates(array) {
+    let newArray = [];
+    for (let i = 0; i < array.length; i++) {
+        if (newArray.indexOf(array[i]) === -1) {
+            newArray.push(array[i]);
+        }
+    }
+    return newArray;
+}
+//Remove With Filter
+function removeFilter(array) {
+    return array.filter((value, index) => {
+        return array.indexOf(value) === index;
+    });
+}
+
+//Remove Recursively
+function removeRecursively(array, newArray = []) {
+    if (array.length === 0) {
+        return newArray;
+    }
+    if (newArray.indexOf(array[0]) === -1) {
+        newArray.push(array[0]);
+    }
+    return removeRecursively(array.slice(1), newArray);
+}
+
+PROMPT 3
+
+const str = "aaabccdddda";
+//Without Recursion
+    function compressString(str) {
+        let strArray = str.split("");
+        let result = "";
+        let counter = 1;
+
+        for (let i = 0; i < strArray.length; i++) {
+            if (strArray[i] === strArray[i + 1]) {
+                counter++;
+            } else {
+                result += counter > 1 ? counter + strArray[i] : strArray[i];
+                counter = 1;
+            }
+        }
+
+        return result;
+    }
+
+//Recursive
+    function compressed(str, i = 0, count = 1, result = "") {
+        if (i >= str.length) {
+            return result;
+        }
+        if (str[i] === str[i + 1]) {
+            return compressed(str, i + 1, count + 1, result);
+        } else {
+            result += count > 1 ? count + str[i] : str[i];
+            return compressed(str, i + 1, 1, result);
+        }
+    }
+PROMPT 4
+
+const string = "copyright";
+
+function areAllCharactersUnique(str) {
+    for (let i = 0; i < str.length; i++) {
+        for (let j = i + 1; j < str.length; j++) {
+            if (str[i] === str[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+PROMPT 5
+looked up how selection sort worked 
+
+function selectionSort(nums) {
+    for (let i = 0; i < nums.length; i++) {
+        let min = i;
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[j] < nums[min]) {
+                min = j;
+            }
+        }
+        if (min !== i) {
+            let temp = nums[i];
+            nums[i] = nums[min];
+            nums[min] = temp;
+        }
+    }
+    return nums;
+}
+
+//call 
+console.log(selectionSort(nums));
